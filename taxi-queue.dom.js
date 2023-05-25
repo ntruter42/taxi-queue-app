@@ -7,7 +7,7 @@ const depart = document.querySelector('.depart');
 const join = document.querySelector('.join_queue');
 const leave = document.querySelector('.leave_queue');
 const taxiJoin = document.querySelector('.join_taxi_queue');
-const taxiLeave = document.querySelector('.depart');
+const taxiLeave = document.querySelector('.taxi_depart');
 
 // OUTPUT ELEMENTS
 const countElement = document.querySelector('.passenger_queue_count');
