@@ -10,7 +10,7 @@ const taxiCountElement = document.querySelector('.taxi_queue_count');
 
 // FACTORY FUNCTION INSTANCE
 const taxiQueue = TaxiQueue();
-if (localStorage.getItem('queue') === undefined && localStorage.getItem('taxiQueue') === undefined) {	
+if (localStorage.getItem('queue') !== undefined && localStorage.getItem('taxiQueue') !== undefined) {	
 	taxiQueue.setQueueLengths(localStorage.getItem('queue'), localStorage.getItem('taxiQueue'));
 }
 countElement.innerHTML = taxiQueue.queueLength();
