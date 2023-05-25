@@ -4,11 +4,6 @@ function TaxiQueue() {
 
 	function joinQueue() {
 		queueCount += 1;
-
-		// if (queueLength() >= 12) {
-		// 	queueCount -= 12;
-		// 	taxiCount -= 1;
-		// }
 	}
 
 	function leaveQueue() {
