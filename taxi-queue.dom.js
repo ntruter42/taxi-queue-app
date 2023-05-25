@@ -8,6 +8,7 @@ const join = document.querySelector('.join_queue');
 const leave = document.querySelector('.leave_queue');
 const taxiJoin = document.querySelector('.join_taxi_queue');
 const taxiLeave = document.querySelector('.taxi_depart');
+const taxiClear = document.querySelector('.clear_taxi_queue');
 
 // OUTPUT ELEMENTS
 const countElement = document.querySelector('.passenger_queue_count');
@@ -83,6 +84,15 @@ taxiJoin.addEventListener('click', function () {
 
 taxiLeave.addEventListener('click', function () {
 	taxiQueue.taxiDepart();
+	countElement.innerHTML = taxiQueue.queueLength();
+	taxiCountElement.innerHTML = taxiQueue.taxiQueueLength();
+	localStorage.setItem('queue', JSON.stringify(taxiQueue.queueLength()));
+	localStorage.setItem('taxiQueue', JSON.stringify(taxiQueue.taxiQueueLength()));
+	displayMessage('depart');
+})
+
+taxiClear.addEventListener('click', function () {
+	taxiQueue.setQueueLengths(0, 0);
 	countElement.innerHTML = taxiQueue.queueLength();
 	taxiCountElement.innerHTML = taxiQueue.taxiQueueLength();
 	localStorage.setItem('queue', JSON.stringify(taxiQueue.queueLength()));
