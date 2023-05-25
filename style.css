@@ -1,6 +1,6 @@
 body {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	background-color: darkgray
+	background-color: #ccf;
 }
 
 .error-message-box {
@@ -10,10 +10,12 @@ body {
 	margin-top: 20px;
 }
 
+
+
 .count {
 	font-size: 4em;
 	padding: 0.1em;
-	border: 2px solid;
+	border: 2px solid black;
 	background-color: orchid;
 	border-radius: 0.1em;
 }
@@ -24,12 +26,20 @@ body {
 	padding: 2em;
 	margin: 1em;
 	border-radius: 0.5em;
+	border: 2px solid black;
+	box-shadow: -5px 5px, -4px 4px, -3px 3px, -2px 2px, -1px 1px;
 }
 
 button {
 	padding: 1em;
 	border-radius: 0.5em;
 	font-weight: bold;
+	border: 2px solid black;
+	box-shadow: -2px 2px, -1px 1px;
+}
+
+button:active {
+	box-shadow: none;
 }
 
 @media (min-width: 768px) {
