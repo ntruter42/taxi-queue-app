@@ -3,6 +3,12 @@ body {
 	background-color: darkgray
 }
 
+.error-message-box {
+	display: flex;
+	justify-content: center;
+
+	margin-top: 20px;
+}
 
 .count {
 	font-size: 4em;

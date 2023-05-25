@@ -1,13 +1,16 @@
 function TaxiQueue() {
 	let queueCount = 0;
 	let taxiCount = 0;
+	let message = '';
 
 	function joinQueue() {
 		queueCount += 1;
 	}
 
 	function leaveQueue() {
-		if (queueLength() > 0) {
+		if (queueLength() <= 0) {
+			setMessage('There are no more people');
+		} else {
 			queueCount -= 1;
 		}
 	}
@@ -30,10 +33,25 @@ function TaxiQueue() {
 	}
 
 	function taxiDepart() {
-		if (queueLength() >= 12 && taxiQueueLength() > 0) {
+		if (taxiQueueLength() <= 0) {
+			setMessage('There are no taxis');
+		} else if (queueLength() < 12) {
+			setMessage('There are too few people (minimum: 12)');
+		} else {
 			queueCount -= 12;
 			taxiCount -= 1;
 		}
+	}
+
+	function setMessage(msg) {
+		message = msg;
+	}
+
+	function getMessage() {
+		let msg = message;
+		message = '';
+
+		return msg;
 	}
 
 	return {
@@ -43,6 +61,8 @@ function TaxiQueue() {
 		queueLength,
 		taxiQueueLength,
 		setQueueLengths,
-		taxiDepart
+		taxiDepart,
+		setMessage,
+		getMessage
 	}
 }
