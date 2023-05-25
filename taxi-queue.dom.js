@@ -92,7 +92,7 @@ taxiLeave.addEventListener('click', function () {
 })
 
 taxiClear.addEventListener('click', function () {
-	taxiQueue.setQueueLengths(0, 0);
+	taxiQueue.setQueueLengths(Number(localStorage.getItem('queue')), 0);
 	countElement.innerHTML = taxiQueue.queueLength();
 	taxiCountElement.innerHTML = taxiQueue.taxiQueueLength();
 	localStorage.setItem('queue', JSON.stringify(taxiQueue.queueLength()));
