@@ -1,6 +1,6 @@
-describe('The taxi queue app', function() {
+describe('The taxi queue app', function () {
 
-	it ('should allow people to join the queue', function() {
+	it('should allow people to join the queue', function () {
 
 		const taxiQueue = TaxiQueue();
 
@@ -14,7 +14,7 @@ describe('The taxi queue app', function() {
 
 	});
 
-	it ('should allow people to leave the queue', function() {
+	it('should allow people to leave the queue', function () {
 
 		const taxiQueue = TaxiQueue();
 
@@ -28,7 +28,7 @@ describe('The taxi queue app', function() {
 
 	});
 
-	it ('should not allow the people queue to be less than 0', function() {
+	it('should not allow the people queue to be less than 0', function () {
 
 		const taxiQueue = TaxiQueue();
 
@@ -46,8 +46,8 @@ describe('The taxi queue app', function() {
 
 	});
 
-	it ('should allow taxis to join the queue', function() {
-		
+	it('should allow taxis to join the queue', function () {
+
 		const taxiQueue = TaxiQueue();
 
 		taxiQueue.joinTaxiQueue();
@@ -77,7 +77,7 @@ describe('The taxi queue app', function() {
 	// });
 
 
-	it ('should allow taxis to leave the queue if there is enough passengers queueing', function() {
+	it('should allow taxis to leave the queue if there is enough passengers queueing', function () {
 
 		const taxiQueue = TaxiQueue();
 
@@ -93,9 +93,9 @@ describe('The taxi queue app', function() {
 		taxiQueue.joinQueue();
 		taxiQueue.joinQueue();
 		taxiQueue.joinQueue(); // 12
-		taxiQueue.joinQueue(); 
 		taxiQueue.joinQueue();
-		taxiQueue.joinQueue(); 
+		taxiQueue.joinQueue();
+		taxiQueue.joinQueue();
 
 		taxiQueue.joinTaxiQueue();
 		taxiQueue.joinTaxiQueue();
@@ -114,7 +114,7 @@ describe('The taxi queue app', function() {
 
 	});
 
-	it ('should not allow a taxi to leave the queue if there is not enough passengers queueing', function() {
+	it('should not allow a taxi to leave the queue if there is not enough passengers queueing', function () {
 
 
 		const taxiQueue = TaxiQueue();
@@ -128,7 +128,7 @@ describe('The taxi queue app', function() {
 		taxiQueue.joinQueue();
 		taxiQueue.joinQueue();
 		taxiQueue.joinQueue();
-		taxiQueue.joinQueue();   
+		taxiQueue.joinQueue();
 		taxiQueue.joinQueue(); // 11 
 
 		taxiQueue.joinTaxiQueue();
@@ -148,7 +148,7 @@ describe('The taxi queue app', function() {
 
 	});
 
-	it ('should check that a taxi can not leave if the taxi queue is empty', function() {
+	it('should check that a taxi can not leave if the taxi queue is empty', function () {
 
 		const taxiQueue = TaxiQueue();
 
@@ -164,9 +164,9 @@ describe('The taxi queue app', function() {
 		taxiQueue.joinQueue();
 		taxiQueue.joinQueue();
 		taxiQueue.joinQueue(); // 12
-		taxiQueue.joinQueue(); 
 		taxiQueue.joinQueue();
-		taxiQueue.joinQueue(); 
+		taxiQueue.joinQueue();
+		taxiQueue.joinQueue();
 
 		// data before a taxi departs
 		assert.equal(0, taxiQueue.taxiQueueLength());
@@ -174,10 +174,39 @@ describe('The taxi queue app', function() {
 
 		// this function call should do nothing as there is no taxis in the taxi queue
 		taxiQueue.taxiDepart();
-		
+
 		// data after a taxi departed
 		assert.equal(0, taxiQueue.taxiQueueLength());
 		assert.equal(15, taxiQueue.queueLength());
 
+	});
+
+	it('should allow queue lengths to be initalized to 0 if no values are set at start', function () {
+
+		const taxiQueue = TaxiQueue();
+
+		assert.equal(0, taxiQueue.queueLength());
+		assert.equal(0, taxiQueue.taxiQueueLength());
+	});
+
+	it('should allow queue lengths to be initalized to given values at start', function () {
+
+		const taxiQueue = TaxiQueue();
+		taxiQueue.setQueueLengths(11, 2);
+
+		assert.equal(11, taxiQueue.queueLength());
+		assert.equal(2, taxiQueue.taxiQueueLength());
+	});
+
+	it('should allow queue lengths to be initalized to given values and still function after start', function () {
+
+		const taxiQueue = TaxiQueue();
+		taxiQueue.setQueueLengths(11, 2);
+		taxiQueue.joinQueue();
+		taxiQueue.joinQueue();
+		taxiQueue.joinTaxiQueue();
+
+		assert.equal(13, taxiQueue.queueLength());
+		assert.equal(3, taxiQueue.taxiQueueLength());
 	});
 });

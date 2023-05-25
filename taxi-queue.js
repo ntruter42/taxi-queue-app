@@ -24,6 +24,11 @@ function TaxiQueue() {
 		return taxiCount;
 	}
 
+	function setQueueLengths(queue, taxiQueue) {
+		queueCount = queue;
+		taxiCount = taxiQueue;
+	}
+
 	function taxiDepart() {
 		if (queueLength() >= 12 && taxiQueueLength() > 0) {
 			queueCount -= 12;
@@ -37,6 +42,7 @@ function TaxiQueue() {
 		joinTaxiQueue,
 		queueLength,
 		taxiQueueLength,
+		setQueueLengths,
 		taxiDepart
 	}
 }

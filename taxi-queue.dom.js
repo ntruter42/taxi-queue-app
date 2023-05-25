@@ -10,25 +10,37 @@ const taxiCountElement = document.querySelector('.taxi_queue_count');
 
 // FACTORY FUNCTION INSTANCE
 const taxiQueue = TaxiQueue();
+if (localStorage.getItem('queue') && localStorage.getItem('taxiQueue')) {	
+	taxiQueue.setQueueLengths(localStorage.getItem('queue'), localStorage.getItem('taxiQueue'));
+}
+countElement.innerHTML = taxiQueue.queueLength();
+taxiCountElement.innerHTML = taxiQueue.taxiQueueLength();
 
 // EVENT LISTENERS
 join.addEventListener('click', function () {
 	taxiQueue.joinQueue();
 	countElement.innerHTML = taxiQueue.queueLength();
+	localStorage.setItem('queue', JSON.stringify(taxiQueue.queueLength()));
 })
 
 leave.addEventListener('click', function () {
 	taxiQueue.leaveQueue();
 	countElement.innerHTML = taxiQueue.queueLength();
+	localStorage.setItem('queue', JSON.stringify(taxiQueue.queueLength()));
 })
 
 taxiJoin.addEventListener('click', function () {
 	taxiQueue.joinTaxiQueue();
 	taxiCountElement.innerHTML = taxiQueue.taxiQueueLength();
+	localStorage.setItem('taxiQueue', JSON.stringify(taxiQueue.taxiQueueLength()));
+
 })
 
 taxiLeave.addEventListener('click', function () {
 	taxiQueue.taxiDepart();
 	countElement.innerHTML = taxiQueue.queueLength();
 	taxiCountElement.innerHTML = taxiQueue.taxiQueueLength();
+	localStorage.setItem('queue', JSON.stringify(taxiQueue.queueLength()));
+	localStorage.setItem('taxiQueue', JSON.stringify(taxiQueue.taxiQueueLength()));
+
 })
